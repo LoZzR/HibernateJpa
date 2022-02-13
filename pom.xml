@@ -19,6 +19,12 @@
             <version>5.0.0.Final</version>
         </dependency>
 
+        <dependency>
+            <groupId>javax.xml.bind</groupId>
+            <artifactId>jaxb-api</artifactId>
+            <version>1.0</version>
+        </dependency>
+
         <!--My SQL dependency-->
         <dependency>
             <groupId>mysql</groupId>
