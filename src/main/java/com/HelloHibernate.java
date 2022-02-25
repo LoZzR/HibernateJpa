@@ -11,6 +11,11 @@ import org.hibernate.service.ServiceRegistry;
 public class HelloHibernate {
 
     public static void main(String args[]){
+        /*SessionFactory sessionFactory = new MetadataSources(
+                new StandardServiceRegistryBuilder()
+                        .configure("hibernate.cfg.xml").build()
+        ).buildMetadata().buildSessionFactory();*/
+
         //Used instead of hibernate.cfg.xml
         StandardServiceRegistryBuilder serviceRegistryBuilder =
                 new StandardServiceRegistryBuilder();
@@ -29,7 +34,7 @@ public class HelloHibernate {
         MetadataBuilder metadataBuilder = metadataSources.getMetadataBuilder();
         Metadata metadata = metadataBuilder.build();
         //
-        SessionFactory sessionFactory = metadata.buildSessionFactory();
+        SessionFactory sessionFactory2 = metadata.buildSessionFactory();
     }
 
 }
