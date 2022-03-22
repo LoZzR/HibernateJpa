@@ -1,10 +1,14 @@
 package com.entities;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 import java.math.BigDecimal;
 
+@Entity
 public class Bid {
 
+    @Id
     protected Long id;
 
     public Long getId() { // Optional but useful
