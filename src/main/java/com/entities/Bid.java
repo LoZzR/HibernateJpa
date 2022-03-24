@@ -19,10 +19,10 @@ public class Bid {
     }
     protected BigDecimal amount;
 
-    public Bid(BigDecimal amount, Item item) {
+   /* public Bid(BigDecimal amount, Item item) {
         this.amount = amount;
         this.item = item;
-    }
+    }*/
 
     public BigDecimal getAmount() {
         return amount;
@@ -32,7 +32,7 @@ public class Bid {
         this.amount = amount;
     }
 
-    protected Item item;
+    /*protected Item item;
 
     public Bid(Item item) {
         this.item = item;
@@ -45,5 +45,5 @@ public class Bid {
 
     public void setItem(Item item) {
         this.item = item;
-    }
+    }*/
 }

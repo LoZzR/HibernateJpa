@@ -1,6 +1,7 @@
 package com;
 
 import com.entities.Message;
+import com.util.EntityManagerHelper;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -9,15 +10,9 @@ import javax.transaction.UserTransaction;
 import java.util.List;
 
 public class HelloJpa {
-    private static final EntityManagerFactory emFactoryObj;
-    private static final String PERSISTENCE_UNIT_NAME = "TestPersistence";
-
-    static {
-        emFactoryObj = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
-    }
 
     public static void main(String args[]){
-        EntityManager em = emFactoryObj.createEntityManager();
+        EntityManager em = EntityManagerHelper.getEntityManager();
         em.getTransaction().begin();
         /*Message message = new Message();
         message.setId(Long.valueOf(1));

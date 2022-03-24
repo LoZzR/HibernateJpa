@@ -1,6 +1,6 @@
 package com.entities;
 
-import javax.persitence.Entity;
+import javax.persistence.Entity;
 import javax.persistence.Id;
 
 import java.math.BigDecimal;
@@ -50,9 +50,9 @@ public class Item {
         this.buyNowPrice = buyNowPrice;
     }
 
-    protected Set<Bid> bids = new HashSet<Bid>();
+    //protected Set<Bid> bids = new HashSet<Bid>();
 
-    public Set<Bid> getBids() {
+    /*public Set<Bid> getBids() {
         return bids;
     }
 
@@ -77,5 +77,5 @@ public class Item {
             return new Bid(bidAmount, this);
         }
         return null;
-    }
+    }*/
 }
