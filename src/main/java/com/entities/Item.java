@@ -2,6 +2,9 @@ package com.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.validation.constraints.Future;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -12,6 +15,12 @@ import java.util.Set;
 public class Item {
 
     @Id
+    @NotNull
+    @Size(
+            min = 2,
+            max = 255,
+            message = "Name is required, maximum 255 characters."
+    )
     protected Long id;
 
     public Long getId() { // Optional but useful
@@ -22,6 +31,7 @@ public class Item {
 
     protected String name;
 
+    @Future
     protected Date auctionEnd;
 
     public String getName() {
