@@ -15,12 +15,6 @@ import java.util.Set;
 public class Item {
 
     @Id
-    @NotNull
-    @Size(
-            min = 2,
-            max = 255,
-            message = "Name is required, maximum 255 characters."
-    )
     protected Long id;
 
     public Long getId() { // Optional but useful
@@ -29,6 +23,12 @@ public class Item {
 
     protected long version;
 
+    @NotNull
+    @Size(
+            min = 2,
+            max = 255,
+            message = "Name is required, maximum 255 characters."
+    )
     protected String name;
 
     @Future
