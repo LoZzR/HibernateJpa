@@ -7,6 +7,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Path;
 import javax.persistence.criteria.Root;
 import java.util.List;
 
@@ -31,7 +32,18 @@ public class Queries {
                 cb.createQuery(Item.class);
         Root<Item> fromItem = query.from(Item.class);
         query.select(fromItem);
-        List<Item> items = em.createQuery(query).getResultList();
+        Path<String> namePath = fromItem.get("name");
+        query.where(
+                cb.like(
+                        namePath,
+                        cb.parameter(String.class, "pattern")
+                )
+        );
+
+        //List<Item> items = em.createQuery(query).getResultList();
+        List<Item> items =em.createQuery(query)
+                        .setParameter("pattern", "%some item%")
+                        .getResultList();
 
         return items;
     }
