@@ -1,7 +1,6 @@
 package com.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -12,10 +11,59 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+//Using native Hiberante
+/*@org.hibernate.annotations.GenericGenerator(
+        name = "ID_GENERATOR",
+        strategy = "enhanced-sequence",
+        parameters = {
+                @org.hibernate.annotations.Parameter(
+                        name = "sequence_name",
+                        value = "JPWH_SEQUENCE"
+                ),
+                @org.hibernate.annotations.Parameter(
+                        name = "initial_value",
+                        value = "1000"
+                )
+        })*/
+//Using JPA
+/*The allocationSize is used to instruct the JPA provider the number
+of values that can be allocated by the application using a single
+database sequence call
+Use a pooled optimizer, The first sequence call gives the value of 1,
+so the first Post entity gets that value. Now, when persisting the second
+Item entity, Hibernate needs to call the sequence again, and it will get
+the value of 6, so it can generate the identifier values of 2, 3, 4, 5, and 6
+without needing any other database sequence call
+ */
+@SequenceGenerator(
+        name = "ID_GENERATOR",
+        allocationSize = 5
+)
 public class Item {
 
     @Id
+    /*Hibernate picks an appropriate strategy, asking the
+    SQL dialect of your configured database what is best, default value*/
+    //@GeneratedValue(strategy = GenerationType.AUTO)
+    /*Hibernate expects (and creates, if you use the tools) a
+    sequence named HIBERNATE_SEQUENCE in your database*/
+    //@GeneratedValue(strategy = GenerationType.SEQUENCE)
+    /*Hibernate expects (and creates in table DDL) a
+    special auto-incremented primary key column*/
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
+    /*Hibernate will use an extra table in your database
+    schema that holds the next numeric primary key value,
+    one row for each entity class*/
+    //@GeneratedValue(strategy = GenerationType.TABLE)
+    //Using native Hibernate
+    //@GeneratedValue(generator = "ID_GENERATOR")
+    //Using JPA
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "ID_GENERATOR"
+    )
     protected Long id;
+
 
     public Long getId() { // Optional but useful
         return id;
