@@ -36,8 +36,7 @@ the value of 6, so it can generate the identifier values of 2, 3, 4, 5, and 6
 without needing any other database sequence call
  */
 @SequenceGenerator(
-        name = "ID_GENERATOR",
-        allocationSize = 5
+        name = "ID_GENERATOR", sequenceName="S_ITEM",allocationSize=5,initialValue=1
 )
 public class Item {
 
