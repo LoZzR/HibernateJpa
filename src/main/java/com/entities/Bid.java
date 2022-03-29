@@ -6,6 +6,7 @@ import javax.persistence.Id;
 import java.math.BigDecimal;
 
 @Entity
+@org.hibernate.annotations.Immutable
 public class Bid {
 
     @Id
