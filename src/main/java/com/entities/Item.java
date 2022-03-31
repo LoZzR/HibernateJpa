@@ -81,6 +81,11 @@ public class Item {
     @Future
     protected Date auctionEnd;
 
+    @org.hibernate.annotations.Formula(
+            "SELECT 'ITEM*' || I.NAME FROM ITEM I WHERE I.ID = ID"
+    )
+    protected String shortDescription;
+
     public String getName() {
         return name;
     }
