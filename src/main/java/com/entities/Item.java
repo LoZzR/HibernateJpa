@@ -79,6 +79,7 @@ public class Item {
     protected String name;
 
     @Future
+    @Temporal(TemporalType.TIMESTAMP)
     protected Date auctionEnd;
 
     @org.hibernate.annotations.Formula(
