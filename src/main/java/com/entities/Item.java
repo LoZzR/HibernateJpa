@@ -6,6 +6,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -83,7 +84,7 @@ public class Item {
     protected Date auctionEnd;
 
     @org.hibernate.annotations.Formula(
-            "SELECT 'ITEM*' || I.NAME FROM ITEM I WHERE I.ID = ID"
+            "SELECT CONCAT('ITEM*',I.NAME) FROM ITEM I WHERE I.ID = ID"
     )
     protected String shortDescription;
 

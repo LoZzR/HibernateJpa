@@ -6,7 +6,7 @@ import javax.persistence.Persistence;
 
 public class EntityManagerHelper {
 
-    private static final EntityManagerFactory emFactoryObj;
+    public static final EntityManagerFactory emFactoryObj;
     private static final String PERSISTENCE_UNIT_NAME = "TestPersistence";
 
     static {
