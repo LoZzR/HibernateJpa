@@ -88,6 +88,9 @@ public class Item {
     )
     protected String shortDescription;
 
+    @org.hibernate.annotations.Type(type = "yes_no")
+    protected boolean verified = false;
+
     public String getName() {
         return name;
     }
