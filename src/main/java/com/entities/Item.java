@@ -1,5 +1,7 @@
 package com.entities;
 
+import com.entities.converters.MonetaryAmountConverter;
+
 import javax.persistence.*;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.NotNull;
@@ -91,6 +93,13 @@ public class Item {
     @org.hibernate.annotations.Type(type = "yes_no")
     protected boolean verified = false;
 
+    @NotNull
+    @Convert(
+            converter = MonetaryAmountConverter.class,
+            disableConversion = false)
+    @Column(name = "PRICE", length = 63)
+    protected MonetaryAmount buyNowPrice;
+
     public String getName() {
         return name;
     }
@@ -107,13 +116,11 @@ public class Item {
         this.auctionEnd = auctionEnd;
     }
 
-    protected BigDecimal buyNowPrice;
-
-    public BigDecimal getBuyNowPrice() {
+    public MonetaryAmount getBuyNowPrice() {
         return buyNowPrice;
     }
 
-    public void setBuyNowPrice(BigDecimal buyNowPrice) {
+    public void setBuyNowPrice(MonetaryAmount buyNowPrice) {
         this.buyNowPrice = buyNowPrice;
     }
 
