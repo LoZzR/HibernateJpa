@@ -9,11 +9,11 @@ import javax.validation.constraints.NotNull;
 @AttributeOverride(
         name = "owner",
         column = @Column(name = "CC_OWNER", nullable = false))
+/*@SequenceGenerator(
+        name = "ID_GENERATOR", sequenceName="S_CREDIT_CARD",allocationSize=5,initialValue=1
+)*/
+@DiscriminatorValue("CC")
 public class CreditCard extends BillingDetails {
-
-    @Id
-    @GeneratedValue(generator = Constants.ID_GENERATOR)
-    protected Long id;
 
     @NotNull
     protected String cardNumber;

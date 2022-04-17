@@ -3,17 +3,22 @@ package com.entities;
 
 import com.util.Constants;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
+/*@SequenceGenerator(
+        name = "ID_GENERATOR", sequenceName="S_BANK_ACCOUNT",allocationSize=5,initialValue=1
+)*/
+@DiscriminatorValue("BA")
 public class BankAccount extends BillingDetails {
-
+/*
     @Id
-    @GeneratedValue(generator = Constants.ID_GENERATOR)
-    protected Long id;
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "ID_GENERATOR"
+    )
+    protected Long id;*/
 
     @NotNull
     protected String account;
