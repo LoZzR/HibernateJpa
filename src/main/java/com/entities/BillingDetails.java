@@ -9,9 +9,11 @@ import javax.validation.constraints.NotNull;
         name = "ID_GENERATOR", sequenceName="S_BILLING_DETAILS",allocationSize=5,initialValue=1
 )
 //@MappedSuperclass
-@Entity
+/*@Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "BD_TYPE")
+@DiscriminatorColumn(name = "BD_TYPE")*/
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class BillingDetails {
 
 
@@ -22,7 +24,7 @@ public abstract class BillingDetails {
     )
     protected Long id;
 
-    @NotNull
+    //@NotNull
     @Column(nullable = false)
     protected String owner;
 
