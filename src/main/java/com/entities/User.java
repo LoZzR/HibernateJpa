@@ -17,6 +17,7 @@ public class User implements Serializable {
     )
     protected Long id;
 
+    protected String name;
 
     protected Address homeAddress;
 
@@ -30,6 +31,17 @@ public class User implements Serializable {
                     column = @Column(name = "BILLING_CITY"))
     })
     protected Address billingAddress;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    protected BillingDetails billingDetails;
+
+    public User(){
+
+    }
+
+    public User(String name){
+        this.name = name;
+    }
 
     public Long getId() {
         return id;
@@ -53,5 +65,13 @@ public class User implements Serializable {
 
     public void setBillingAddress(Address billingAddress) {
         this.billingAddress = billingAddress;
+    }
+
+    public BillingDetails getBillingDetails() {
+        return billingDetails;
+    }
+
+    public void setBillingDetails(BillingDetails billingDetails) {
+        this.billingDetails = billingDetails;
     }
 }

@@ -12,8 +12,8 @@ import javax.validation.constraints.NotNull;
 /*@SequenceGenerator(
         name = "ID_GENERATOR", sequenceName="S_CREDIT_CARD",allocationSize=5,initialValue=1
 )*/
-//@DiscriminatorValue("CC")
-@PrimaryKeyJoinColumn(name = "CREDITCARD_ID")
+@DiscriminatorValue("CC")
+//@PrimaryKeyJoinColumn(name = "CREDITCARD_ID")
 public class CreditCard extends BillingDetails {
 
     @NotNull
