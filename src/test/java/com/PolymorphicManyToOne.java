@@ -1,5 +1,6 @@
 package com;
 
+import com.entities.BillingDetails;
 import com.entities.CreditCard;
 import com.entities.User;
 import com.util.EntityManagerHelper;
@@ -9,6 +10,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import javax.persistence.EntityManager;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class PolymorphicManyToOne {
 
@@ -29,11 +33,25 @@ public class PolymorphicManyToOne {
         johndoe.setBillingDetails(cc);
         em.persist(cc);
         em.persist(johndoe);
+        em.getTransaction().commit();
+
+        List<User> users = em.createQuery("SELECT u FROM User u").getResultList();
+        List<BillingDetails> billingDetails = em.createQuery("SELECT b FROM BillingDetails b").getResultList();
+
+        assertNotNull(users);
+        assertEquals(1, users.size());
+
+        assertAll(
+                ()->assertNotNull(users),
+                ()->assertEquals(1, users.size()),
+                ()->assertNotNull(billingDetails),
+                ()->assertEquals(1, billingDetails.size())
+
+        );
     }
 
     @AfterEach
     public void tearDown(){
-        em.getTransaction().commit();
         em.close();
         EntityManagerHelper.emFactoryObj.close();
     }
