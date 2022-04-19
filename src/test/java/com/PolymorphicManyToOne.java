@@ -50,6 +50,31 @@ public class PolymorphicManyToOne {
         );
     }
 
+    @Test
+    public void retrieveUserByIdPositive(){
+        User user = em.find(User.class, Long.valueOf(22));
+        assertNotNull(user);
+        BillingDetails bd = user.getBillingDetails();
+        assertFalse(bd instanceof CreditCard);
+
+        // if previous is not called, select generated only for CreditCard field
+        CreditCard creditCard =
+                em.getReference(CreditCard.class, Long.valueOf(22));
+
+        //assertTrue(bd != creditCard);
+
+        User userEager = (User) em.createQuery(
+                "select u from User u " +
+                        "left join fetch u.billingDetails " +
+                        "where u.id = :id")
+                .setParameter("id", Long.valueOf(22))
+                .getSingleResult();
+        assertNotNull(userEager);
+        //If there is no lazy loading before
+        CreditCard creditCardEager = (CreditCard)userEager.getBillingDetails();
+        assertTrue(creditCardEager instanceof CreditCard);
+    }
+
     @AfterEach
     public void tearDown(){
         em.close();
