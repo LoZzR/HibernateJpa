@@ -100,6 +100,14 @@ public class Item {
     @Column(name = "PRICE", length = 63)
     protected MonetaryAmount buyNowPrice;
 
+    @ElementCollection
+    @CollectionTable(
+            name = "IMAGE",
+            joinColumns = @JoinColumn(name = "ITEM_ID"))
+    @Column(name = "FILENAME")
+    protected Set<String> images = new
+            HashSet<String>();
+
     public String getName() {
         return name;
     }
