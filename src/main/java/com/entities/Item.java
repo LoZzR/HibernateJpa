@@ -9,9 +9,7 @@ import javax.validation.constraints.Size;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 //Using native Hiberante
@@ -93,20 +91,21 @@ public class Item {
     @org.hibernate.annotations.Type(type = "yes_no")
     protected boolean verified = false;
 
-    @NotNull
+    /*@NotNull
     @Convert(
             converter = MonetaryAmountConverter.class,
             disableConversion = false)
-    @Column(name = "PRICE", length = 63)
-    protected MonetaryAmount buyNowPrice;
+    @Column(name = "PRICE", length = 63)*/
+    //protected MonetaryAmount buyNowPrice;
 
     @ElementCollection
     @CollectionTable(
             name = "IMAGE",
-            joinColumns = @JoinColumn(name = "ITEM_ID"))
+            /*Defaults to ITEM_IMAGES*/joinColumns = @JoinColumn(name = "ITEM_ID"))
+    //Enables persistent order; defaults to IMAGES_ORDER
+    @OrderColumn
     @Column(name = "FILENAME")
-    protected Set<String> images = new
-            HashSet<String>();
+    protected List<String> images = new ArrayList<>();
 
     public String getName() {
         return name;
@@ -124,15 +123,50 @@ public class Item {
         this.auctionEnd = auctionEnd;
     }
 
-    public MonetaryAmount getBuyNowPrice() {
+   /* public MonetaryAmount getBuyNowPrice() {
         return buyNowPrice;
     }
 
     public void setBuyNowPrice(MonetaryAmount buyNowPrice) {
         this.buyNowPrice = buyNowPrice;
     }
+*/
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-    //protected Set<Bid> bids = new HashSet<Bid>();
+    public long getVersion() {
+        return version;
+    }
+
+    public void setVersion(long version) {
+        this.version = version;
+    }
+
+    public String getShortDescription() {
+        return shortDescription;
+    }
+
+    public void setShortDescription(String shortDescription) {
+        this.shortDescription = shortDescription;
+    }
+
+    public boolean isVerified() {
+        return verified;
+    }
+
+    public void setVerified(boolean verified) {
+        this.verified = verified;
+    }
+
+    public List<String> getImages() {
+        return images;
+    }
+
+    public void setImages(List<String> images) {
+        this.images = images;
+    }
+//protected Set<Bid> bids = new HashSet<Bid>();
 
     /*public Set<Bid> getBids() {
         return bids;
