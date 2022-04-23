@@ -103,9 +103,11 @@ public class Item {
             name = "IMAGE",
             /*Defaults to ITEM_IMAGES*/joinColumns = @JoinColumn(name = "ITEM_ID"))
     //Enables persistent order; defaults to IMAGES_ORDER
-    @OrderColumn
-    @Column(name = "FILENAME")
-    protected List<String> images = new ArrayList<>();
+    //@OrderColumn
+    @MapKeyColumn(name = "FILENAME")
+    @Column(name = "IMAGENAME")
+    //@Column(name = "FILENAME")
+    protected Map<String, String> images = new HashMap<String, String>();
 
     public String getName() {
         return name;
@@ -159,11 +161,11 @@ public class Item {
         this.verified = verified;
     }
 
-    public List<String> getImages() {
+    public Map<String, String> getImages() {
         return images;
     }
 
-    public void setImages(List<String> images) {
+    public void setImages(HashMap<String, String> images) {
         this.images = images;
     }
 //protected Set<Bid> bids = new HashSet<Bid>();
